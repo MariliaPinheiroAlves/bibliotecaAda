@@ -1,0 +1,70 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.livro {
+    background-color: #D9D9D3;
+    width: 500px;
+    display: flex;
+    border-radius: 9px;
+    padding: .7rem;
+    gap: .7rem;
+    color: #161613;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-10px);
+}
+
+.livro img {
+    min-width: 200px;
+    height: 300px;
+    border-radius: 1rem;
+}
+
+.container-infos {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.container-infos .titulo {
+    font-size: 32px;
+    margin-bottom: .6rem;
+    line-height: 1.4rem;
+    font-weight: 300;
+}
+
+.container-infos .autor {
+    font-size: 14px;
+    margin-bottom: .7rem;
+    font-weight: 200;
+}
+
+.container-infos .descricao {
+    text-align: justify;
+    margin-bottom: 1rem;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.container-btn {
+    display: flex;
+    justify-content: space-around;
+}
+
+.container-btn .btn {
+    background-color: #CAD1C7;
+    padding: .5rem 1.3rem;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s ease-in;
+}
+
+.container-btn .btn:hover {
+    background-color: #667761;
+    color: #D9D9D3;
+    transform: scale(1.03);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}

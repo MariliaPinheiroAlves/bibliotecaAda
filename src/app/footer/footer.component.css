@@ -1,0 +1,16 @@
+footer {
+    width: 100%;
+    background-color: #88968B;
+    color: #2C2C26;
+    text-align: center;
+    gap: 3rem;
+    padding: .5rem;
+    border-top: 1px solid #D9D9D3;
+    font-size: 12px;
+    font-weight: 200;
+}
+
+footer a {
+    text-decoration: none;
+    color: #2C2C26;
+}
