@@ -5,6 +5,7 @@ import { LivroComponent } from "./livro/livro.component";
 import { FooterComponent } from "./footer/footer.component";
 import { Livro } from './models/livro.model';
 import { FormComponent } from "./form/form.component";
+import { LivroService } from './services/livro.service';
 
 @Component({
   selector: 'app-root',
