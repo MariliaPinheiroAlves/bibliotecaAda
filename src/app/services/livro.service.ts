@@ -4,22 +4,16 @@ import { Livro } from '../models/livro.model';
 @Injectable({
   providedIn: 'root'
 })
-
 export class LivroService {
-
-  constructor() { }
-
-  remove(livros: Livro[], livro: Livro) {
-    return livros.filter((l) => livro.titulo !== l.titulo);
+  atualizarLivrosNoLocalStorage(livros: Livro[]) {
+    localStorage.setItem('livros', JSON.stringify(livros));
   }
 
-  editar(livros: Livro[], livroAtualizado: Livro): void {
-    console.log('editarService');
+  remove(livros: Livro[], livro: Livro): Livro[] {
+    return livros.filter(l => l.id !== livro.id);
+  }
 
-    // MUDAR RETORNO DO FUNÇÃO PARA ====> Livro[]
-
-    // return livros.map((livro) =>
-    //   livro.titulo === livroAtualizado.titulo ? livroAtualizado : livro
-    // );
+  editar(livros: Livro[], livroEditado: Livro): Livro[] {
+    return livros.map(livro => livro.id === livroEditado.id ? livroEditado : livro);
   }
 }

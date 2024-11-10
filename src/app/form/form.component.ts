@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Livro } from '../models/livro.model'
 import { FormsModule } from '@angular/forms';
 
@@ -10,6 +10,8 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./form.component.css']
 })
 export class FormComponent {
+  @Output() livrosAtualizados = new EventEmitter<Livro[]>(); 
+  
   livro: Livro = {
     id: '',
     titulo: '',
@@ -25,6 +27,7 @@ export class FormComponent {
       localStorage.setItem('livros', JSON.stringify(livros));
       alert('Livro cadastrado com sucesso!');
       this.limparFormulario();
+      this.livrosAtualizados.emit(livros);
     } else {
       alert('Por favor, preencha todos os campos.');
     }
