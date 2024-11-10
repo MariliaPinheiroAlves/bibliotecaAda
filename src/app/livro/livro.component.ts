@@ -17,8 +17,11 @@ export class LivroComponent {
   constructor(private livroService: LivroService) { }
 
   removerLivro(livro: Livro) {
-    this.livros = this.livroService.remove(this.livros, livro);
-  };
+    const confirmaExclusao = confirm(`Tem certeza que deseja excluir o livro "${livro.titulo}"?`);
+    if (confirmaExclusao) {
+      this.livros = this.livroService.remove(this.livros, livro);
+    }
+  }
 
   editarLivro() {
     // ADICIONAR PARAMETRO PARA ESSA FUNÇÃO ======> livroAtualizado: Livro
