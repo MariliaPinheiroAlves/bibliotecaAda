@@ -9,9 +9,10 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css']
 })
+
 export class FormComponent {
-  @Output() livrosAtualizados = new EventEmitter<Livro[]>(); 
-  
+  @Output() livrosAtualizados = new EventEmitter<Livro[]>();
+
   livro: Livro = {
     id: '',
     titulo: '',

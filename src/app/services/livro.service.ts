@@ -4,12 +4,21 @@ import { Livro } from '../models/livro.model';
 @Injectable({
   providedIn: 'root'
 })
+
 export class LivroService {
   atualizarLivrosNoLocalStorage(livros: Livro[]) {
     localStorage.setItem('livros', JSON.stringify(livros));
   }
 
-  remove(livros: Livro[], livro: Livro): Livro[] {
+  remover(livros: Livro[], livro: Livro): Livro[] {
+    const livrosLocalStorage: Livro[] = JSON.parse(localStorage.getItem('livros') || '[]');
+    const existeNoLocalStorage = livrosLocalStorage.some(l => l.id === livro.id);
+
+    if (existeNoLocalStorage) {
+      const livrosAtualizados = livrosLocalStorage.filter(l => l.id !== livro.id);
+      this.atualizarLivrosNoLocalStorage(livrosAtualizados);
+    }
+    
     return livros.filter(l => l.id !== livro.id);
   }
 
