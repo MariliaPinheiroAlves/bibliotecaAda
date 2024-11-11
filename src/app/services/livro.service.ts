@@ -23,6 +23,11 @@ export class LivroService {
   }
 
   editar(livros: Livro[], livroEditado: Livro): Livro[] {
-    return livros.map(livro => livro.id === livroEditado.id ? livroEditado : livro);
+    const livrosAtualizados = livros.map(livro => 
+      livro.id === livroEditado.id ? livroEditado : livro
+    );
+
+    this.atualizarLivrosNoLocalStorage(livrosAtualizados); 
+    return livrosAtualizados;
   }
 }

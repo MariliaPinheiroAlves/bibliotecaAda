@@ -24,10 +24,16 @@ export class LivroComponent {
     }
   }
 
-  editarLivro() {
-    // ADICIONAR PARAMETRO PARA ESSA FUNÇÃO ======> livroAtualizado: Livro
-    console.log('Editar livro');
-    this.livros.forEach((livro) => console.log(livro));
-    // this.livros = this.livroService.editar(this.livros, livroAtualizado);
+  editarLivro(livro: Livro) {
+    // Aqui vai o formulário ou modal pra pegar as novas informações do livro
+    const livroAtualizado: Livro = { 
+      ...livro, 
+      titulo: "Novo título", 
+      autor: "Novo autor", 
+      descricao: "Nova descrição", 
+      foto: "nova-url-foto.jpg"
+    };
+    console.log(livro);
+    this.livros = this.livroService.editar(this.livros, livroAtualizado);
   }
 };

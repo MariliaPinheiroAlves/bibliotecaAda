@@ -6,7 +6,7 @@
             <p class="autor">{{ livro.autor }}</p>
             <p class="descricao">{{ livro.descricao }}</p>
             <div class="container-btn">
-                <button class="btn" (click)="editarLivro()">Editar</button>
+                <button class="btn" (click)="editarLivro(livro)">Editar</button>
                 <button class="btn" (click)="removerLivro(livro)">Excluir</button>
                 <button class="btn" [routerLink]="['/detalhe/', livro.id]">Ver mais</button>
             </div>
