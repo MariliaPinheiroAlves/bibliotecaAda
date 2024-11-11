@@ -27,6 +27,7 @@ export class FormComponent {
       livros.push(this.livro);
       localStorage.setItem('livros', JSON.stringify(livros));
       alert('Livro cadastrado com sucesso!');
+      livros.forEach((livro) => console.log(livro));
       this.limparFormulario();
       this.livrosAtualizados.emit(livros);
     } else {

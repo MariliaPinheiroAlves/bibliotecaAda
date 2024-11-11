@@ -1,6 +1,10 @@
-<div *ngIf="livro">
-  <h2>{{ livro.titulo }}</h2>
-  <p>Autor: {{ livro.autor }}</p>
-  <p>Descrição: {{ livro.descricao }}</p>
-  <img [src]="livro.foto" [alt]="livro.autor">
+<div *ngIf="livro" class="container">
+  <div class="livro">
+    <img [src]="livro.foto" [alt]="livro.autor">
+    <div class="container-infos">
+      <p class="titulo">{{ livro.titulo }}</p>
+      <p class="autor">Autor: {{ livro.autor }}</p>
+      <p class="descricao">{{ livro.descricao }}</p>
+    </div>
+  </div>
 </div>

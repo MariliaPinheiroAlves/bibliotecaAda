@@ -18,7 +18,7 @@ export class LivroService {
       const livrosAtualizados = livrosLocalStorage.filter(l => l.id !== livro.id);
       this.atualizarLivrosNoLocalStorage(livrosAtualizados);
     }
-    
+
     return livros.filter(l => l.id !== livro.id);
   }
 

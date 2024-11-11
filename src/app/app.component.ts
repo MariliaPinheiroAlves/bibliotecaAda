@@ -1,24 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from "./header/header.component";
-import { LivroComponent } from "./livro/livro.component";
 import { FooterComponent } from "./footer/footer.component";
 import { Livro } from './models/livro.model';
-import { FormComponent } from "./form/form.component";
-import { LivroService } from './services/livro.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, LivroComponent, FooterComponent, FormComponent],
+  imports: [RouterOutlet, HeaderComponent, FooterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 
-export class AppComponent implements OnInit {
-  ngOnInit() {
-    this.carregarLivrosDoLocalStorage();
-  }
+export class AppComponent {
 
   livros: Livro[] = [
     {
@@ -120,16 +114,4 @@ export class AppComponent implements OnInit {
       foto: "https://m.media-amazon.com/images/I/71CbRWXBY6L._AC_UF1000,1000_QL80_.jpg"
     }
   ];
-
-  carregarLivrosDoLocalStorage() {
-    const livrosSalvos = localStorage.getItem('livros');
-    if (livrosSalvos) {
-      const livrosDoLocalStorage: Livro[] = JSON.parse(livrosSalvos);
-      this.livros = [...this.livros, ...livrosDoLocalStorage];
-    }
-  }
-
-  atualizarListaLivros(novosLivros: Livro[]) {
-    this.livros = [...novosLivros];
-  }
 }

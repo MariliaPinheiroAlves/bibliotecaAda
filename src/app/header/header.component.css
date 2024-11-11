@@ -18,6 +18,7 @@
     cursor: pointer;
     transition: 0.3s ease-in;
     color: #2C2C26;
+    margin-left: 1rem;
 }
 
 .link:hover {
@@ -25,4 +26,8 @@
     color: #D9D9D3;
     transform: scale(1.03);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+a {
+    text-decoration: none;
 }
