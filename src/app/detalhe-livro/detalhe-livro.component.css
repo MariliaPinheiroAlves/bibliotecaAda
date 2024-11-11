@@ -1,0 +1,79 @@
+.container-detalhe {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #F5F5F2;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 2rem auto;
+  color: #161613;
+}
+
+.detalhe-livro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.detalhe-livro img {
+  width: 250px;
+  height: 350px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.detalhe-infos {
+  text-align: center;
+  max-width: 600px;
+}
+
+.detalhe-infos .titulo {
+  font-size: 36px;
+  font-weight: 400;
+  margin-bottom: 0.8rem;
+}
+
+.detalhe-infos .autor {
+  font-size: 18px;
+  font-weight: 300;
+  margin-bottom: 1rem;
+  color: #555;
+}
+
+.detalhe-infos .descricao {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.6;
+  text-align: justify;
+  color: #333;
+}
+
+.container-btn-detalhe {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.container-btn-detalhe .btn {
+  background-color: #CAD1C7;
+  padding: 0.7rem 1.5rem;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s ease-in;
+}
+
+.container-btn-detalhe .btn:hover {
+  background-color: #667761;
+  color: #D9D9D3;
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+button {
+  border: none;
+}

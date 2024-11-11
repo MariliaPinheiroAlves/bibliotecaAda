@@ -2,11 +2,12 @@ import { Component, Input } from '@angular/core';
 import { Livro } from '../models/livro.model';
 import { CommonModule } from '@angular/common';
 import { LivroService } from '../services/livro.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-livro',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './livro.component.html',
   styleUrl: './livro.component.css'
 })
