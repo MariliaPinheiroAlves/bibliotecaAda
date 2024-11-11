@@ -6,11 +6,6 @@
             <p class="autor">{{ livro.autor }}</p>
             <p class="descricao">{{ livro.descricao }}</p>
             <div class="container-btn">
-<<<<<<< HEAD
-=======
-                <button class="btn" (click)="editarLivro(livro)">Editar</button>
-                <button class="btn" (click)="removerLivro(livro)">Excluir</button>
->>>>>>> 79d8a1b2c3bc6172da8fc8aa2ae50558c8313799
                 <button class="btn" [routerLink]="['/detalhe/', livro.id]">Ver mais</button>
                 <button class="btn" [routerLink]="['/editar-livro/', livro.id]">Editar</button>
                 <button class="btn" (click)="removerLivro(livro)">Excluir</button>

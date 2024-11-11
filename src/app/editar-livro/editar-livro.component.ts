@@ -12,6 +12,7 @@ import { NgIf } from '@angular/common';
   templateUrl: './editar-livro.component.html',
   styleUrl: './editar-livro.component.css'
 })
+
 export class EditarLivroComponent implements OnInit {
   livro: Livro | undefined;
   livros: Livro[] = LIVROS;
@@ -42,12 +43,12 @@ export class EditarLivroComponent implements OnInit {
   editarLivro(livroEditado: Livro): void {
     if (this.livro) {
       const livrosLocalStorage: Livro[] = JSON.parse(localStorage.getItem('livros') || '[]');
-      const todosLivros: Livro[] = [...LIVROS, ...livrosLocalStorage];
 
-      const livrosAtualizados = this.editar(todosLivros, livroEditado);
+      const livrosAtualizados = this.editar(livrosLocalStorage, livroEditado);
 
       localStorage.setItem('livros', JSON.stringify(livrosAtualizados));
 
+      alert('Alterações salvas');
       console.log('Livro atualizado:', livroEditado);
     }
   }

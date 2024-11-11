@@ -22,9 +22,7 @@ export class DetalheLivroComponent implements OnInit {
     if (livroId) {
       const livrosLocalStorage: Livro[] = JSON.parse(localStorage.getItem('livros') || '[]');
 
-      const todosLivros: Livro[] = [...LIVROS, ...livrosLocalStorage];
-
-      this.livro = todosLivros.find(livro => livro.id === livroId.toString());
+      this.livro = livrosLocalStorage.find(livro => livro.id === livroId.toString());
       console.log('Livro encontrado:', this.livro);
     }
   }
