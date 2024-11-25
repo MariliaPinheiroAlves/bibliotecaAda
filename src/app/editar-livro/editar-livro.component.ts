@@ -1,37 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Livro } from '../models/livro.model';
-import { ActivatedRoute } from '@angular/router';
-import { LIVROS } from '../livro/mock-livros';
-import { NgIf } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-editar-livro',
   standalone: true,
-  imports: [FormsModule, NgIf],
+  imports: [FormsModule],
   templateUrl: './editar-livro.component.html',
   styleUrl: './editar-livro.component.css'
 })
 
 export class EditarLivroComponent implements OnInit {
   livro: Livro | undefined;
-  livros: Livro[] = LIVROS;
-  livrosLocalStorage: Livro[] = JSON.parse(localStorage.getItem('livros') || '[]');
-  todosLivros: Livro[] = [...LIVROS, ...this.livrosLocalStorage];
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(
+    private route: ActivatedRoute,
+    private readonly router: Router
+  ) { }
 
   ngOnInit(): void {
+    this.carregarLivro();
+  }
+
+  private carregarLivro(): void {
     const livroId = this.route.snapshot.paramMap.get('id');
-    console.log(livroId)
 
     if (livroId) {
-      const livrosLocalStorage: Livro[] = JSON.parse(localStorage.getItem('livros') || '[]');
-
-      const todosLivros: Livro[] = [...LIVROS, ...livrosLocalStorage];
-
-      this.livro = todosLivros.find(livro => livro.id === livroId.toString());
-
+      this.livro = this.buscarLivroPorId(livroId);
       if (this.livro) {
         console.log('Livro encontrado:', this.livro);
       } else {
@@ -40,20 +36,33 @@ export class EditarLivroComponent implements OnInit {
     }
   }
 
+  private buscarLivroPorId(id: string): Livro | undefined {
+    const todosLivros = this.getLivrosFromStorage();
+    return todosLivros.find(livro => livro.id === id);
+  }
+
   editarLivro(livroEditado: Livro): void {
     if (this.livro) {
-      const livrosLocalStorage: Livro[] = JSON.parse(localStorage.getItem('livros') || '[]');
-
-      const livrosAtualizados = this.editar(livrosLocalStorage, livroEditado);
-
-      localStorage.setItem('livros', JSON.stringify(livrosAtualizados));
+      const livrosAtualizados = this.editar(this.getLivrosFromStorage(), livroEditado);
+      this.salvarLivrosNoStorage(livrosAtualizados);
 
       alert('Alterações salvas');
-      console.log('Livro atualizado:', livroEditado);
+
+      this.livro = this.buscarLivroPorId(livroEditado.id);  //
+
+      this.router.navigate(['/']);
     }
   }
 
-  editar(livros: Livro[], livroEditado: Livro): Livro[] {
+  private getLivrosFromStorage(): Livro[] {
+    return JSON.parse(localStorage.getItem('livros') || '[]');
+  }
+
+  private salvarLivrosNoStorage(livros: Livro[]): void {
+    localStorage.setItem('livros', JSON.stringify(livros));
+  }
+
+  private editar(livros: Livro[], livroEditado: Livro): Livro[] {
     return livros.map(livro => livro.id === livroEditado.id ? livroEditado : livro);
   }
 }

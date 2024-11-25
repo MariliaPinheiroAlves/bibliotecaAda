@@ -1,10 +1,15 @@
-<div *ngIf="livro" class="container">
+@if(livro){
+<div class="container-box">
   <div class="livro">
     <img [src]="livro.foto" [alt]="livro.autor">
     <div class="container-infos">
       <p class="titulo">{{ livro.titulo }}</p>
       <p class="autor">Autor: {{ livro.autor }}</p>
       <p class="descricao">{{ livro.descricao }}</p>
+      <div class="container-btn">
+        <button class="btn" [routerLink]="['/']">Voltar à pagina principal</button>
+    </div>
     </div>
   </div>
 </div>
+}

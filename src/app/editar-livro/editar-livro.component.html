@@ -1,9 +1,6 @@
-<div *ngIf="livro" class="form-container">
-    <h2>Novo Livro</h2>
-    <div class="form-group">
-        <label for="id">ID:</label>
-        <input type="text" id="id" name="id" class="form-control" [(ngModel)]="livro.id" required>
-    </div>
+@if(livro){
+<div class="form-container">
+    <h2>Editar</h2>
 
     <div class="form-group">
         <label for="titulo">Título:</label>
@@ -26,5 +23,6 @@
         <input type="text" id="foto" name="foto" class="form-control" [(ngModel)]="livro.foto" required>
     </div>
 
-    <button type="button" class="btn" (click)="editarLivro(livro)">Cadastrar</button>
+    <button type="button" class="btn" (click)="editarLivro(livro)">Salvar alterações</button>
 </div>
+}

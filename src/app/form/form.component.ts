@@ -1,6 +1,8 @@
+import { v4 as uuid } from 'uuid'
 import { Component, EventEmitter, Output } from '@angular/core';
 import { Livro } from '../models/livro.model'
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form',
@@ -21,27 +23,34 @@ export class FormComponent {
     foto: ''
   };
 
-  salvarLivro() {
-    if (this.livro.id && this.livro.titulo && this.livro.autor && this.livro.descricao && this.livro.foto) {
-      const livros: Livro[] = JSON.parse(localStorage.getItem('livros') || '[]');
+  constructor(private readonly router: Router) { }
+
+  salvarLivro(): void {
+    if (this.livro.titulo && this.livro.autor && this.livro.descricao && this.livro.foto) {
+      this.livro.id = uuid();
+      const livros = this.obterLivrosDoStorage();
       livros.push(this.livro);
-      localStorage.setItem('livros', JSON.stringify(livros));
+      this.salvarLivrosNoStorage(livros);
+
       alert('Livro cadastrado com sucesso!');
-      livros.forEach((livro) => console.log(livro));
       this.limparFormulario();
       this.livrosAtualizados.emit(livros);
+
+      this.router.navigate(['/']);
     } else {
       alert('Por favor, preencha todos os campos.');
     }
   }
 
-  limparFormulario() {
-    this.livro = {
-      id: '',
-      titulo: '',
-      autor: '',
-      descricao: '',
-      foto: ''
-    };
+  private obterLivrosDoStorage(): Livro[] {
+    return JSON.parse(localStorage.getItem('livros') || '[]');
+  }
+
+  private salvarLivrosNoStorage(livros: Livro[]): void {
+    localStorage.setItem('livros', JSON.stringify(livros));
+  }
+
+  private limparFormulario(): void {
+    this.livro = { id: '', titulo: '', autor: '', descricao: '', foto: '' };
   }
 }

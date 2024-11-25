@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Livro } from '../models/livro.model';
 
-@Injectable({
-  providedIn: 'root'
-})
-
+@Injectable({ providedIn: 'root' })
 export class LivroService {
   atualizarLivrosNoLocalStorage(livros: Livro[]) {
     localStorage.setItem('livros', JSON.stringify(livros));
@@ -23,11 +20,11 @@ export class LivroService {
   }
 
   editar(livros: Livro[], livroEditado: Livro): Livro[] {
-    const livrosAtualizados = livros.map(livro => 
+    const livrosAtualizados = livros.map(livro =>
       livro.id === livroEditado.id ? livroEditado : livro
     );
 
-    this.atualizarLivrosNoLocalStorage(livrosAtualizados); 
+    this.atualizarLivrosNoLocalStorage(livrosAtualizados);
     return livrosAtualizados;
   }
 }

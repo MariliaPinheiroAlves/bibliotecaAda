@@ -9,6 +9,7 @@
 
 .nav-link {
     margin-top: 1rem;
+    gap: .5rem;
 }
 
 .link {
@@ -30,4 +31,21 @@
 
 a {
     text-decoration: none;
+}
+
+
+@media (max-width: 550px) {
+    .nav-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 300px) {
+
+    .header {
+        font-size: 14px;
+    }
 }

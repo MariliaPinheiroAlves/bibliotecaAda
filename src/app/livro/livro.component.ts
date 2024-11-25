@@ -14,25 +14,29 @@ import { LivroService } from '../services/livro.service';
 })
 
 export class LivroComponent implements OnInit {
-  livros: Livro[] = LIVROS;
-  livrosLocalStorage: Livro[] = JSON.parse(localStorage.getItem('livros') || '[]');
   todosLivros: Livro[] = [];
 
   constructor(private livroService: LivroService) { }
 
   ngOnInit() {
+    this.carregarLivros();
+  }
+
+  private carregarLivros() {
     const livrosNoStorage = localStorage.getItem('livros');
 
-    if (!livrosNoStorage) {
-      localStorage.setItem('livros', JSON.stringify(LIVROS));
-      this.todosLivros = LIVROS;
+    if (livrosNoStorage) {
+      this.todosLivros = JSON.parse(livrosNoStorage);
     } else {
-      this.livrosLocalStorage = JSON.parse(livrosNoStorage);
-      this.todosLivros = [...this.livrosLocalStorage];
+      this.salvarLivrosNoStorage(LIVROS);
+      this.todosLivros = LIVROS;
     }
-
-    console.log(this.todosLivros);
   }
+
+  private salvarLivrosNoStorage(livros: Livro[]) {
+    localStorage.setItem('livros', JSON.stringify(livros));
+  }
+
 
   removerLivro(livro: Livro) {
     const confirmaExclusao = confirm(`Tem certeza que deseja excluir o livro "${livro.titulo}"?`);
@@ -41,8 +45,6 @@ export class LivroComponent implements OnInit {
       this.todosLivros = this.livroService.remover(this.todosLivros, livro);
 
       localStorage.setItem('livros', JSON.stringify(this.todosLivros));
-
-      console.log('Livro removido:', livro);
     }
   }
 }
